@@ -1,0 +1,8 @@
+li
+  div class="control-group"
+    = builder.label :description, field_type.titleize
+    div class="controls"
+      = builder.text_area :description
+
+javascript:
+  addField("#{field_type}");

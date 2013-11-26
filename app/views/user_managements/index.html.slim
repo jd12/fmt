@@ -1,0 +1,16 @@
+= page_header('User Management', 'View and remove users')
+
+table class="table table-striped"
+  thead
+    tr
+      th Name
+      th Email
+      th Roles
+      th &nbsp;
+  tbody
+    - for user in @users
+      tr
+        td= user.name
+        td= user.email
+        td= print_roles_for_user(user)
+        td= button_to 'Delete User', user_management_path(user), class: 'btn btn-small btn-danger', method: :delete, confirm: 'Are you sure you want to delete this user?'

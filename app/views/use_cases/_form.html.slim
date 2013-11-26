@@ -1,0 +1,22 @@
+= form_for [@requirements_document, @use_case], :html => { :class => 'form-horizontal' } do |f|
+
+  = errors_for(@use_case)
+
+  div class="control-group"
+    = f.label :name, :class => 'control-label'
+    div class="controls"
+      = f.text_field :name, :class => 'text_field', autofocus: :autofocus
+
+  = render partial: 'field', locals: {f: f, field_type: 'precondition'}
+
+  = render partial: 'field', locals: {f: f, field_type: 'main_flow'}
+
+  = render partial: 'field', locals: {f: f, field_type: 'sub_flow'}
+
+  = render partial: 'field', locals: {f: f, field_type: 'alternate_flow'}
+
+  br
+
+  div class="form-actions clear"
+    = f.submit :class => 'btn btn-primary'
+    = link_to 'Cancel', requirements_documents_path(project_id: @use_case.requirements_document.project_id), :class => 'btn'

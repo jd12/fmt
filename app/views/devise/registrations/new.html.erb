@@ -1,0 +1,22 @@
+<h2>Register User<br /><small>User will be created with password ChangeMe unless otherwise specified</small></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :name %>
+  <%= f.text_field :name, autofocus: :autofocus %></div><br />
+
+  <div><%= f.label :email %>
+  <%= f.email_field :email %></div><br />
+
+  <div><%= f.label :password %>
+  <%= f.password_field :password, value: 'ChangeMe' %></div><br />
+
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, value: 'ChangeMe' %></div><br />
+
+  <br />
+  <div><%= f.submit "Register", class: 'btn btn-primary' %></div>
+<% end %>
+
+<%#= render "devise/shared/links" %>

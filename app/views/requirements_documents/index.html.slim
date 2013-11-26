@@ -1,0 +1,21 @@
+= page_header('Requirements Document', 'View and create new use cases')
+
+= (content_tag :div, (link_to 'Add Use Case', new_requirements_document_use_case_path(@requirements_document, project_id: @project.id), class: 'btn'))
+
+br
+
+- if @requirements_document.use_cases.present?
+  - @requirements_document.use_cases.each_with_index do |use_case, index|
+    h3= "#{index+1} #{use_case.name}"
+    = management_actions(use_case, @requirements_document)
+    = usecase_subheader('Preconditions', use_case, 'preconditions')
+    = usecase_subheader('Main Flows', use_case, 'main_flows')
+    = usecase_subheader('Sub-Flows', use_case, 'sub_flows')
+    = usecase_subheader('Alternate Flows', use_case, 'alternate_flows')
+    hr
+- else
+  | There are no use cases for this requirements document
+
+// Fix button dropdown on mobile devices with touch events
+javascript:
+  $('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });

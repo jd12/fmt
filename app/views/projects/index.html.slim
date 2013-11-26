@@ -1,0 +1,15 @@
+= page_header('Projects', 'Choose a project to begin')
+
+- if @projects.present?
+  table class="table table-striped table-bordered user_list"
+    thead
+      tr
+        th Name
+        th Role
+    tbody
+      - @projects.each do |project|
+        tr
+          td= link_to project.name, project_path(project)
+          td= project.role_for_user(current_user)
+- else
+  | You are not assigned to any projects

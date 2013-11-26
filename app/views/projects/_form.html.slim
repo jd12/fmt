@@ -1,0 +1,15 @@
+= form_for @project, :html => { :class => 'form-horizontal' } do |f|
+
+  = errors_for(@project)
+
+  div class="control-group"
+    = f.label :name, :class => 'control-label'
+    div class="controls"
+      = f.text_field :name, :class => 'text_field', autofocus: :autofocus
+
+  br
+  = render partial: 'user_list', locals: { builder: f } unless @project.new_record?
+
+  div class="form-actions clear"
+    = f.submit :class => 'btn btn-primary'
+    = link_to 'Cancel', project_managements_path(project_id: @project.id), :class => 'btn'

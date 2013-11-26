@@ -1,0 +1,11 @@
+= content_tag(:ul, id: "#{field_type}_list") do
+  - if f.object.new_record?
+    = f.fields_for field_type.pluralize.to_sym, f.object.send(field_type.pluralize).build  do |builder|
+      = render partial: 'list_item', locals: {builder: builder, field_type: field_type }
+  - else
+    = f.fields_for field_type.pluralize.to_sym do |builder|
+      = render partial: 'list_item', locals: {builder: builder, field_type: field_type }
+
+= link_to "Add #{field_type.titleize}", '#', id: "add_#{field_type}"
+br
+br
